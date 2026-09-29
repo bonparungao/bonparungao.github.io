@@ -309,11 +309,11 @@ html,body{overflow-x:clip}
   #doc-print .doc-page:last-child{break-after:auto;page-break-after:auto}
   #doc-print img{display:block;margin:0 auto;height:auto}
   #doc-print .doc-page.tall img{width:90%}
-  #doc-print .doc-page.wide{display:flex;align-items:center;justify-content:center;height:100vh}
-  #doc-print .doc-page.wide img{width:auto;max-width:96%;max-height:96%;object-fit:contain;margin:0}
+  #doc-print .doc-page.wide{display:block;height:0;padding:0 0 74%;overflow:hidden}
+  #doc-print .doc-page.wide img{position:absolute;top:52.2%;left:50%;margin:0;width:94%;max-width:none;max-height:none;transform:translate(-50%,-50%)}
 }
-/* Phone print dialogs often force portrait. Rotate wide pages to fill the tall sheet on one page. */
+/* Phone print dialogs often force portrait. Rotate wide pages to fill the tall sheet on one page. Sizes use width, never vh, because phones report a different height while printing. */
 @media print and (orientation:portrait){
-  #doc-print .doc-page.wide{display:block;height:100vh;padding:0;overflow:hidden}
-  #doc-print .doc-page.wide img{position:absolute;top:50%;left:50%;margin:0;width:min(96vh,153vw);max-width:none;max-height:none;transform:translate(-50%,-50%) rotate(90deg)}
+  #doc-print .doc-page.wide{display:block;height:0;padding:0 0 126%;overflow:hidden}
+  #doc-print .doc-page.wide img{position:absolute;top:53.3%;left:50%;margin:0;width:120%;max-width:none;max-height:none;transform:translate(-50%,-50%) rotate(90deg)}
 }
