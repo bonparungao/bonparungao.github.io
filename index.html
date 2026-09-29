@@ -422,8 +422,8 @@
         })(i);
         return Promise.all(jobs).then(function (pages) {
           pages.sort(function (x, y) { return x.n - y.n; });
-          pages.forEach(function (p) { var img = document.createElement('img'); img.src = p.c.toDataURL('image/jpeg', 0.92); img.alt = ''; var w = document.createElement('div'); w.className = 'doc-page'; w.appendChild(img); box.appendChild(w); });
-          style.textContent = '@media print{@page{size:' + (first.width > first.height ? 'landscape' : 'portrait') + ';margin:0}}';
+          pages.forEach(function (p) { var img = document.createElement('img'); img.src = p.c.toDataURL('image/jpeg', 0.92); img.alt = ''; var w = document.createElement('div'); w.className = 'doc-page ' + (first.width > first.height ? 'wide' : 'tall'); w.style.setProperty('--ar', (first.height / first.width).toFixed(4)); w.appendChild(img); box.appendChild(w); });
+          style.textContent = '@page{size:' + (first.width > first.height ? 'letter landscape' : 'letter portrait') + ';margin:0}';
           document.head.appendChild(style); document.body.appendChild(box);
           document.body.classList.add('printing-doc');
           var imgs = box.querySelectorAll('img');
