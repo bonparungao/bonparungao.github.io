@@ -312,6 +312,14 @@ html,body{overflow-x:clip}
   #doc-print .doc-page.wide{display:block;height:0;padding:0 0 74%;overflow:hidden}
   #doc-print .doc-page.wide img{position:absolute;top:52.2%;left:50%;margin:0;width:94%;max-width:none;max-height:none;transform:translate(-50%,-50%)}
 }
+/* Touch devices (phones, tablets): wide slides are rotated in the image itself (not with CSS) and shown at a
+   modest width, so height can never exceed the sheet even with a phone dialog's own margins. */
+@media print{
+  body.print-touch #doc-print .doc-page{display:block;height:auto;padding:0;margin:0;overflow:visible;position:static;width:100%;text-align:center}
+  body.print-touch #doc-print .doc-page.rot img{position:static;transform:none;display:block;margin:0 auto;height:auto;max-height:none;max-width:none}
+  body.print-touch #doc-print .doc-page.rot{padding-top:1.5%}
+  body.print-touch #doc-print .doc-page.rot img{width:74%}
+}
 /* Phone print dialogs often force portrait. Rotate wide pages to fill the tall sheet on one page. Sizes use width, never vh, because phones report a different height while printing. */
 @media print and (orientation:portrait){
   #doc-print .doc-page.wide{display:block;height:0;padding:0 0 126%;overflow:hidden}
