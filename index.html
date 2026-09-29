@@ -88,10 +88,12 @@
               <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 3v10.17l3.59-3.58L17 11l-5 5-5-5 1.41-1.41L11 13.17V3h1ZM5 19h14v2H5z"/></svg>
               Resume (PDF)
             </a>
+            <button type="button" class="btn-print" data-print="Bonifer-Parungao-Resume.pdf" aria-label="Print resume"><svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M19 8H5a3 3 0 0 0-3 3v6h4v4h12v-4h4v-6a3 3 0 0 0-3-3Zm-3 11H8v-5h8v5Zm3-7a1 1 0 1 1 0-2 1 1 0 0 1 0 2ZM18 3H6v4h12V3Z"/></svg> Print</button>
             <a class="btn btn-secondary" href="Bonifer-Parungao-Portfolio.pdf" target="_blank" rel="noopener">
               <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M10 2h4a2 2 0 0 1 2 2v2h4a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4V4a2 2 0 0 1 2-2Zm4 4V4h-4v2h4Z"/></svg>
               Portfolio
             </a>
+            <button type="button" class="btn-print" data-print="Bonifer-Parungao-Portfolio.pdf" aria-label="Print portfolio"><svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M19 8H5a3 3 0 0 0-3 3v6h4v4h12v-4h4v-6a3 3 0 0 0-3-3Zm-3 11H8v-5h8v5Zm3-7a1 1 0 1 1 0-2 1 1 0 0 1 0 2ZM18 3H6v4h12V3Z"/></svg> Print</button>
             <a class="btn btn-secondary" href="#contact">Contact me</a>
           </div>
           <p class="hero-note">Open to Technical Support Engineer roles, remote or LA area.</p>
@@ -327,28 +329,6 @@
             <p>Certified</p>
           </div>
         </div>
-
-        <h3 class="subhead">Capstone projects</h3>
-        <div class="cap-grid">
-          <article class="cap-card">
-            <img src="capstone-solar-energy-pack.jpg" width="966" height="564" loading="lazy" alt="Multisim schematic of the solar charge controller">
-            <div class="cap-body">
-              <p class="edu-badge cert">Team project · ET-4711</p>
-              <h3>Solar Energy Pack</h3>
-              <p>Our team built a solar-powered USB battery pack: a 10W solar panel, a charge controller, and a battery pack with two USB ports (1A and 2A) and charge-indicator LEDs. It charged a phone in direct sunlight.</p>
-              <p><strong>Troubleshooting:</strong> the charge controller's output was unstable. We traced it to a blown diode, repaired it, and the comparator op-amp circuit was no longer needed.</p>
-            </div>
-          </article>
-          <article class="cap-card">
-            <img class="tall" src="capstone-candy-dispenser.jpg" width="568" height="761" loading="lazy" alt="Finished automatic candy dispenser tower">
-            <div class="cap-body">
-              <p class="edu-badge cert">Team project · ET 345</p>
-              <h3>Automatic Candy Dispenser</h3>
-              <p>Our team built a dispenser where an IR transmitter and receiver trigger a 741 op-amp comparator, then a relay and a DC motor. We calibrated it so a 90° rotation dispenses about 1 g of candy.</p>
-              <p><strong>Troubleshooting:</strong> LED trouble, shorted wires, drifting sensor voltage, and candy jams. We also tuned the comparator's trigger voltage.</p>
-            </div>
-          </article>
-        </div>
       </div>
     </section>
 
@@ -399,6 +379,25 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
     document.getElementById('print-btn').addEventListener('click', function () { window.print(); });
+
+  (function () {
+    var coarse = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+    document.querySelectorAll('[data-print]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var url = b.getAttribute('data-print');
+        if (coarse) { window.open(url, '_blank', 'noopener'); return; }
+        var f = document.createElement('iframe');
+        f.style.cssText = 'position:fixed;right:0;bottom:0;width:0;height:0;border:0';
+        f.src = url;
+        f.onload = function () {
+          try { f.contentWindow.focus(); f.contentWindow.print(); }
+          catch (e) { window.open(url, '_blank', 'noopener'); }
+        };
+        document.body.appendChild(f);
+        setTimeout(function () { if (f.parentNode) f.parentNode.removeChild(f); }, 120000);
+      });
+    });
+  })();
   </script>
 </body>
 </html>
