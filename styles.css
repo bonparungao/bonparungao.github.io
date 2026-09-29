@@ -74,6 +74,7 @@ ul{margin:0;padding:0}
 .headline{font-size:clamp(1.15rem,3.6vw,1.5rem);font-weight:700;color:var(--accent);margin-bottom:.8em}
 .pitch{font-size:1.1rem;color:var(--ink-2);max-width:36em}
 .location{display:flex;align-items:center;gap:6px;color:var(--muted);font-weight:600;font-size:.95rem}
+.hero-note{margin:14px 0 0;font-size:.95rem;font-weight:600;color:var(--ink-2)}
 .btn-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 22px;border-radius:12px;font-weight:700;text-decoration:none;font-size:1rem;transition:transform .15s ease,background-color .15s ease,box-shadow .15s ease}
 .btn:hover{transform:translateY(-1px)}
@@ -144,6 +145,13 @@ ul{margin:0;padding:0}
 @supports not (aspect-ratio:16/9){.video-frame{height:0;padding-top:56.25%}}
 .video figcaption{margin-top:12px;color:var(--ink-2);font-size:.98rem}
 .video figcaption .text-link{display:inline-block;margin-top:4px}
+.kb-card{display:flex;gap:14px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
+@media (min-width:900px){.kb-card{grid-column:1/-1}}
+.kb-card h3{font-size:1.1rem;margin-bottom:.3em}
+.kb-card p{margin:0 0 .5em}
+.kb-card .kb-label{font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin:0 0 .3em}
+.kb-card .text-link{overflow-wrap:anywhere}
+.kb-sep{margin:0 8px;color:var(--muted)}
 .icon-list{list-style:none;display:grid;gap:14px}
 .icon-list li{display:flex;gap:14px;align-items:flex-start;color:var(--ink-2)}
 .icon-list strong{color:var(--ink)}
@@ -213,14 +221,15 @@ ul{margin:0;padding:0}
   .headline{font-size:14pt;margin-bottom:6pt}
   .pitch{font-size:11pt}
   .stats{grid-template-columns:repeat(4,1fr);gap:8pt;margin-top:12pt}
+  .hero-note{margin-top:6pt;font-size:10.5pt}
   .stats li{padding:8pt 10pt}
   .stats strong{font-size:16pt}
   h2{font-size:16pt;margin-bottom:6pt}
   h2,h3,.eyebrow,.role-head,.subhead{break-after:avoid;page-break-after:avoid}
   .eyebrow{display:block;margin-bottom:2pt}
   .eyebrow.inline{display:inline}
-  .role,.earlier li,.skill-card,.edu-card,.stats li,.contact-card,.video,.icon-list li,.facts li,.shot,.lead{break-inside:avoid;page-break-inside:avoid}
-  .role,.skill-card,.edu-card,.earlier li,.stats li{border:1px solid #cfd8d6;box-shadow:none}
+  .role,.earlier li,.skill-card,.edu-card,.stats li,.contact-card,.video,.kb-card,.icon-list li,.facts li,.shot,.lead{break-inside:avoid;page-break-inside:avoid}
+  .role,.skill-card,.edu-card,.earlier li,.stats li,.kb-card{border:1px solid #cfd8d6;box-shadow:none}
   .role{padding:12pt 14pt;margin-top:10pt}
   .role-featured{border-top:3pt solid #0f766e}
   .facts{grid-template-columns:repeat(4,1fr)}
@@ -241,6 +250,9 @@ ul{margin:0;padding:0}
   .text-link[href^="http"]::after{content:" (" attr(href) ")";font-weight:500;color:#444}
   a[href$=".pdf"]::after{content:" (bonparungao.com/Bonifer-Parungao-Resume.pdf)";font-weight:500;color:#444}
   .text-link span[aria-hidden]{display:none}
+  .kb-card .ico{display:none}
+  .kb-card{padding:10pt 12pt}
+  .kb-card .text-link::after{overflow-wrap:anywhere}
   .site-footer{padding:14pt 0 0}
   *{print-color-adjust:exact;-webkit-print-color-adjust:exact}
 }
